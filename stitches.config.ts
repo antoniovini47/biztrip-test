@@ -9,6 +9,8 @@ export const { styled, theme, globalCss } = createStitches({
       secondaryOnHover: "#A6B0B9",
       light: "#F0F2F5",
       dark: "#1A1A1F",
+      white: "#FFFFFF",
+      black: "#000000",
     },
     fontSizes: {
       sm: "12px",
@@ -20,9 +22,12 @@ export const { styled, theme, globalCss } = createStitches({
       bold: "600",
     },
     padding: {
+      sm: "8px",
       md: "16px",
+      lg: "24px",
     },
     gap: {
+      sm: "8px",
       md: "16px",
     },
     borderRadius: {

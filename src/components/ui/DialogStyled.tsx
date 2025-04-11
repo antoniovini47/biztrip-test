@@ -12,6 +12,7 @@ const DialogContentStyled = styled(Dialog.Content, {
   backgroundColor: theme.colors.light,
   borderRadius: theme.borderRadius.md,
   border: `1px solid ${theme.colors.secondary}`,
+  width: "25vw",
 });
 
 const HeaderStyled = styled(Dialog.Title, {
@@ -19,7 +20,7 @@ const HeaderStyled = styled(Dialog.Title, {
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "center",
-  backgroundColor: "white",
+  backgroundColor: theme.colors.white,
   gap: theme.gap.md,
   marginBottom: 0,
   marginTop: 0,
@@ -30,6 +31,11 @@ const HeaderStyled = styled(Dialog.Title, {
 
 const CloseButtonStyled = styled(X, {
   cursor: "pointer",
+  "&:hover": {
+    color: theme.colors.secondaryOnHover,
+
+    transition: "color 300ms, background-color 300ms",
+  },
 });
 
 const ContentStyled = styled("div", {
@@ -40,7 +46,7 @@ const ContentStyled = styled("div", {
 });
 
 const FooterStyled = styled("div", {
-  backgroundColor: "white",
+  backgroundColor: theme.colors.white,
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",

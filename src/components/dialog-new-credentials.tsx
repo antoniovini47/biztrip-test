@@ -1,4 +1,18 @@
 import DialogStyled from "./ui/DialogStyled";
+import InputStyled from "./ui/InputStyled";
+import { styled } from "@stitches/react";
+import { theme } from "../../stitches.config";
+
+const FormStyled = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: theme.gap.sm,
+});
+
+const LabelStyled = styled("p", {
+  textAlign: "left",
+  marginLeft: "10%",
+});
 
 type DialogNewCredentialsProps = {
   trigger: React.ReactNode;
@@ -9,10 +23,20 @@ const DialogNewCredentials = ({ trigger }: DialogNewCredentialsProps) => {
 
   const DialogNewCredentialsContent = () => {
     return (
-      <div>
-        <h1>New Credentials</h1>
-        <p>Content</p>
-      </div>
+      <FormStyled>
+        <div>
+          <LabelStyled>Fornecedor</LabelStyled>
+          <InputStyled placeholder="Selecione o fornecedor" />
+        </div>
+        <div>
+          <LabelStyled>Nome da Credencial</LabelStyled>
+          <InputStyled placeholder="Nome da Credencial" />
+        </div>
+        <div>
+          <LabelStyled>Tipo de Serviço</LabelStyled>
+          <InputStyled placeholder="Selecione o tipo de serviço" />
+        </div>
+      </FormStyled>
     );
   };
 
