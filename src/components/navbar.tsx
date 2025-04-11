@@ -4,11 +4,12 @@ import NavBarTitle from "./navbar-title";
 import { theme } from "../../stitches.config";
 
 const NavBarStyles = styled("div", {
-  padding: theme.padding.md,
+  padding: theme.padding.lg,
   backgroundColor: theme.colors.light,
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
+  borderBottom: `1px solid ${theme.colors.secondary}`,
 });
 
 const Navbar = () => {
