@@ -1,22 +1,46 @@
 import { styled } from "@stitches/react";
 import { Switch } from "radix-ui";
 import { theme } from "../../../stitches.config";
+import { CheckIcon } from "lucide-react";
 
 const SwitchRootStyled = styled(Switch.Root, {
-  all: "unset",
-  width: 42,
-  height: 25,
-  backgroundColor: theme.colors.primary,
+  width: "48px",
+  height: "24px",
+  borderRadius: theme.borderRadius.lg,
+  border: `${theme.borderWidth.md} solid ${theme.colors.primary}`,
+  position: "relative",
+  '&[data-state="checked"]': {
+    backgroundColor: theme.colors.lightBlue,
+  },
+  '&[data-state="unchecked"]': {
+    backgroundColor: theme.colors.white,
+    border: `${theme.borderWidth.md} solid ${theme.colors.secondary}`,
+  },
 });
 
 const SwitchThumbStyled = styled(Switch.Thumb, {
+  display: "block",
+  width: "16px",
+  height: "16px",
   backgroundColor: theme.colors.primary,
+  borderRadius: theme.borderRadius.lg,
+  transition: "transform 100ms",
+  willChange: "transform",
+  '&[data-state="checked"]': {
+    transform: "translateX(18px)",
+  },
+  '&[data-state="unchecked"]': {
+    transform: "translateX(0px)",
+    backgroundColor: theme.colors.secondary,
+  },
 });
 
 const SwitchStyled = () => {
   return (
     <SwitchRootStyled>
-      <SwitchThumbStyled />
+      <SwitchThumbStyled>
+        <CheckIcon size={10} color={theme.colors.white.toString()} />
+      </SwitchThumbStyled>
     </SwitchRootStyled>
   );
 };
