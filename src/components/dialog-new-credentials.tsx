@@ -45,9 +45,6 @@ const DialogNewCredentials = ({ trigger }: DialogNewCredentialsProps) => {
       title={title}
       trigger={trigger}
       content={DialogNewCredentialsContent()}
-      onClick={() => {
-        console.log("Clicked!");
-      }}
       onClickText="Add Credential"
     />
   );
