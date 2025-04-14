@@ -7,9 +7,7 @@ type ServiceTypeIconProps = {
 
 const ServiceTypeIcon = ({ serviceType }: ServiceTypeIconProps) => {
   const IconName = capitalize(serviceType.toString());
-  console.log(IconName);
   const IconComponent = Lucide[IconName as keyof typeof Lucide] as React.ComponentType;
-  console.log(IconComponent);
 
   if (!IconComponent) {
     return <Lucide.EllipsisIcon />;
