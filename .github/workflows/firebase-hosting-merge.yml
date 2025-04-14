@@ -9,6 +9,10 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    env:
+      VITE_BASE_API_URL: ${{ secrets.VITE_BASE_API_URL }}
+      VITE_LOGIN_USER_EMAIL: ${{ secrets.VITE_LOGIN_USER_EMAIL }}
+      VITE_LOGIN_USER_PASSWORD: ${{ secrets.VITE_LOGIN_USER_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
       - run: npm ci && npm run build
