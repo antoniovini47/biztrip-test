@@ -8,7 +8,7 @@ export async function api(
     defaultHeaders["Content-Type"] = "application/json";
   }
 
-  let response = await fetch(input, {
+  const response = await fetch(input, {
     ...init,
     headers: {
       ...defaultHeaders,

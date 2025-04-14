@@ -67,7 +67,7 @@ const SupplierCollumContainer = ({ title, children }: SupplierCollumContainerPro
   );
 };
 
-const SupplierListItem = (supplier: unknown) => {
+const SupplierListItem = () => {
   return (
     <SupplierContainerStyled>
       <SupplierCollumContainer title="Name" children={<>Supplier name...</>} />
