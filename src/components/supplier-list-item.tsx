@@ -3,7 +3,6 @@ import { Edit } from "lucide-react";
 import SwitchStyled from "./ui/SwitchStyled";
 import { theme } from "../../stitches.config";
 import ServiceTypeIcon from "./ui/ServiceIconType";
-import { Supplier } from "../types/Supplier";
 
 const SupplierContainerStyled = styled("div", {
   display: "flex",
@@ -68,7 +67,7 @@ const SupplierCollumContainer = ({ title, children }: SupplierCollumContainerPro
   );
 };
 
-const SupplierListItem = (supplier: Supplier) => {
+const SupplierListItem = (supplier: unknown) => {
   return (
     <SupplierContainerStyled>
       <SupplierCollumContainer title="Name" children={<>Supplier name...</>} />

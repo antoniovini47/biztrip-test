@@ -30,6 +30,7 @@ export const { styled, theme, globalCss } = createStitches({
     gap: {
       sm: "8px",
       md: "16px",
+      lg: "24px",
     },
     margin: {
       sm: "8px",
