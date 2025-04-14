@@ -7,6 +7,7 @@ export const { styled, theme, globalCss } = createStitches({
       primaryOnHover: "#0058B1",
       secondary: "#C2CCD6",
       secondaryOnHover: "#A6B0B9",
+      lightBlue: "#E0F0FF",
       light: "#F0F2F5",
       dark: "#1A1A1F",
       white: "#FFFFFF",
@@ -29,9 +30,21 @@ export const { styled, theme, globalCss } = createStitches({
     gap: {
       sm: "8px",
       md: "16px",
+      lg: "24px",
+    },
+    margin: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
     },
     borderRadius: {
+      sm: "4px",
       md: "8px",
+      lg: "16px",
+    },
+    borderWidth: {
+      sm: "1px",
+      md: "2px",
     },
   },
 });
@@ -39,5 +52,6 @@ export const { styled, theme, globalCss } = createStitches({
 export const globalStyles = globalCss({
   ":root": {
     fontFamily: "system-ui, Inter",
+    backgroundColor: "$light",
   },
 });
