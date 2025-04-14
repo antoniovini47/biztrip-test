@@ -1,7 +1,9 @@
+import SuppliersList from "./components/suppliers-list";
+
 function App() {
   return (
     <>
-      <>Body App</>
+      <SuppliersList />
     </>
   );
 }

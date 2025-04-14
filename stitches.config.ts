@@ -30,8 +30,17 @@ export const { styled, theme, globalCss } = createStitches({
       sm: "8px",
       md: "16px",
     },
+    margin: {
+      sm: "8px",
+      md: "16px",
+      lg: "24px",
+    },
     borderRadius: {
       md: "8px",
+    },
+    borderWidth: {
+      sm: "1px",
+      md: "2px",
     },
   },
 });
@@ -39,5 +48,6 @@ export const { styled, theme, globalCss } = createStitches({
 export const globalStyles = globalCss({
   ":root": {
     fontFamily: "system-ui, Inter",
+    backgroundColor: "$light",
   },
 });
