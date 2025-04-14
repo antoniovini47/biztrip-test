@@ -1,8 +1,8 @@
 import { styled } from "@stitches/react";
-import { Edit, Plane } from "lucide-react";
+import { Edit } from "lucide-react";
 import SwitchStyled from "./ui/SwitchStyled";
 import { theme } from "../../stitches.config";
-
+import ServiceTypeIcon from "./ui/ServiceIconType";
 import { Supplier } from "../types/Supplier";
 
 const SupplierContainerStyled = styled("div", {
@@ -35,8 +35,23 @@ const SupplierCollumTitleStyled = styled("p", {
 });
 
 const SupplierCollumContentStyled = styled("p", {
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: theme.gap.sm,
   fontSize: theme.fontSizes.md,
   margin: 0,
+});
+
+const EditIconStyled = styled(Edit, {
+  color: theme.colors.black,
+  width: "24px",
+  height: "24px",
+  "&:hover": {
+    color: theme.colors.primary,
+    transition: "color 300ms",
+  },
 });
 
 type SupplierCollumContainerProps = {
@@ -60,17 +75,14 @@ const SupplierListItem = (supplier: Supplier) => {
       <SupplierCollumContainer title="Credential name" children={<>Credential name...</>} />
       <SupplierCollumContainer
         title="Service type"
-        children={
-          <>
-            <Plane />
-          </>
-        }
+        // !TODO: Only icon sample, change it later to receive plane/bed/etc
+        children={<ServiceTypeIcon serviceType={"hotel"} />}
       />
       <SupplierCollumContainer
         title="Status"
         children={
           <>
-            <Edit />
+            <EditIconStyled />
             <SwitchStyled />
           </>
         }
