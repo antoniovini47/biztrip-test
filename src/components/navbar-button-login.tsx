@@ -3,12 +3,17 @@ import ButtonStyled from "./ui/ButtonStyled";
 import { getConfig } from "../lib/config";
 import { useEffect, useState } from "react";
 import LoadingIcon from "./loading-icon";
+import capitalize from "../utils/capitalize";
 
 const NavBarButtonLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const { mutate: login, isPending } = useLoginMutation({
+  const {
+    mutate: login,
+    isPending,
+    data,
+  } = useLoginMutation({
     onSuccess: (data) => {
       localStorage.setItem("access-token", data.token.value);
       setIsLoggedIn(true);
@@ -49,7 +54,7 @@ const NavBarButtonLogin = () => {
 
   return (
     <ButtonStyled onClick={isLoggedIn ? handleLogout : handleLogin}>
-      {isLoggedIn ? "Logout" : "Login"}
+      {isLoggedIn ? `Logout (${capitalize(data?.user.name.split(" ")[0])})` : "Login"}
     </ButtonStyled>
   );
 };
