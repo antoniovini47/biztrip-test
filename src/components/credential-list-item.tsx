@@ -3,8 +3,9 @@ import { Edit } from "lucide-react";
 import SwitchStyled from "./ui/SwitchStyled";
 import { theme } from "../../stitches.config";
 import ServiceTypeIcon from "./ui/ServiceIconType";
+import { Credential } from "../types/credential.types";
 
-const SupplierContainerStyled = styled("div", {
+const CredentialContainerStyled = styled("div", {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
@@ -21,19 +22,19 @@ const SupplierContainerStyled = styled("div", {
   },
 });
 
-const SupplierCollumContainerStyled = styled("div", {
+const CredentialCollumContainerStyled = styled("div", {
   display: "flex",
   flexDirection: "column",
   gap: theme.gap.sm,
 });
 
-const SupplierCollumTitleStyled = styled("p", {
+const CredentialCollumTitleStyled = styled("p", {
   fontSize: theme.fontSizes.sm,
   color: theme.colors.secondaryOnHover,
   margin: 0,
 });
 
-const SupplierCollumContentStyled = styled("p", {
+const CredentialCollumContentStyled = styled("p", {
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
@@ -53,41 +54,44 @@ const EditIconStyled = styled(Edit, {
   },
 });
 
-type SupplierCollumContainerProps = {
+type CredentialCollumContainerProps = {
   title: string;
   children: React.ReactNode;
 };
 
-const SupplierCollumContainer = ({ title, children }: SupplierCollumContainerProps) => {
+const CredentialCollumContainer = ({ title, children }: CredentialCollumContainerProps) => {
   return (
-    <SupplierCollumContainerStyled>
-      <SupplierCollumTitleStyled>{title}</SupplierCollumTitleStyled>
-      <SupplierCollumContentStyled>{children}</SupplierCollumContentStyled>
-    </SupplierCollumContainerStyled>
+    <CredentialCollumContainerStyled>
+      <CredentialCollumTitleStyled>{title}</CredentialCollumTitleStyled>
+      <CredentialCollumContentStyled>{children}</CredentialCollumContentStyled>
+    </CredentialCollumContainerStyled>
   );
 };
 
-const SupplierListItem = () => {
+type CredentialListItemProps = {
+  credential: Credential;
+};
+
+const CredentialListItem = ({ credential }: CredentialListItemProps) => {
   return (
-    <SupplierContainerStyled>
-      <SupplierCollumContainer title="Name" children={<>Supplier name...</>} />
-      <SupplierCollumContainer title="Credential name" children={<>Credential name...</>} />
-      <SupplierCollumContainer
+    <CredentialContainerStyled>
+      <CredentialCollumContainer title="Name" children={credential.provider.name} />
+      <CredentialCollumContainer title="Credential name" children={credential.description} />
+      <CredentialCollumContainer
         title="Service type"
-        // !TODO: Only icon sample, change it later to receive plane/bed/etc
-        children={<ServiceTypeIcon serviceType={"hotel"} />}
+        children={<ServiceTypeIcon serviceType={credential.service_type} />}
       />
-      <SupplierCollumContainer
+      <CredentialCollumContainer
         title="Status"
         children={
           <>
             <EditIconStyled />
-            <SwitchStyled />
+            <SwitchStyled checked={credential.active} />
           </>
         }
       />
-    </SupplierContainerStyled>
+    </CredentialContainerStyled>
   );
 };
 
-export default SupplierListItem;
+export default CredentialListItem;

@@ -35,9 +35,13 @@ const SwitchThumbStyled = styled(Switch.Thumb, {
   },
 });
 
-const SwitchStyled = () => {
+type SwitchStyledProps = {
+  checked: boolean;
+};
+
+const SwitchStyled = ({ checked }: SwitchStyledProps) => {
   return (
-    <SwitchRootStyled>
+    <SwitchRootStyled checked={checked}>
       <SwitchThumbStyled>
         <CheckIcon size={10} color={theme.colors.white.toString()} />
       </SwitchThumbStyled>
