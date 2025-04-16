@@ -4,18 +4,46 @@ import { useGetAllCredentials } from "../queries/credential.queries";
 const CredentialsList = () => {
   const { data, isLoading, isError, error } = useGetAllCredentials();
 
-  console.log("data: ", data);
-
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}>
+        Loading...
+      </div>
+    );
   }
 
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}>
+        Error: {error.message}
+      </div>
+    );
   }
 
   if (data?.length === 0) {
-    return <div>No credentials found</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "80vh",
+        }}>
+        No credentials found
+      </div>
+    );
   }
 
   return (

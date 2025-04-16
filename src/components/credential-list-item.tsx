@@ -4,6 +4,8 @@ import SwitchStyled from "./ui/SwitchStyled";
 import { theme } from "../../stitches.config";
 import ServiceTypeIcon from "./ui/ServiceIconType";
 import { Credential } from "../types/credential.types";
+import { useToggleActiveCredentialMutation } from "../mutations/credential.mutations";
+import { useState } from "react";
 
 const CredentialContainerStyled = styled("div", {
   display: "flex",
@@ -73,6 +75,21 @@ type CredentialListItemProps = {
 };
 
 const CredentialListItem = ({ credential }: CredentialListItemProps) => {
+  const [isActive, setIsActive] = useState(credential.active);
+
+  const { mutate: toggleActiveCredential, isPending } = useToggleActiveCredentialMutation({
+    onError: () => {
+      setIsActive(credential.active);
+    },
+  });
+
+  function handleToggleActive(checked: boolean) {
+    toggleActiveCredential({
+      credentialUuid: credential.credential_uuid,
+      active: checked,
+    });
+  }
+
   return (
     <CredentialContainerStyled>
       <CredentialCollumContainer title="Name" children={credential.provider.name} />
@@ -85,8 +102,15 @@ const CredentialListItem = ({ credential }: CredentialListItemProps) => {
         title="Status"
         children={
           <>
+            <SwitchStyled
+              onCheckedChange={() => {
+                handleToggleActive(isActive);
+                setIsActive(!isActive);
+              }}
+              checked={isActive}
+              disabled={isPending}
+            />
             <EditIconStyled />
-            <SwitchStyled checked={credential.active} />
           </>
         }
       />

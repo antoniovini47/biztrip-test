@@ -16,3 +16,8 @@ export type Credential = {
 };
 
 export type CredentialsResponse = Credential[];
+
+export type ToggleActiveCredentialParams = {
+  credentialUuid: string;
+  active: boolean;
+};
