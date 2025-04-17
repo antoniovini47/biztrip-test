@@ -1,8 +1,8 @@
 import { api } from "./api.service";
 import { getConfig } from "../lib/config";
-import { LoginParams, SuccessfulLoginResponse } from "../types/auth.types";
+import { LoginParams, LoginResponse } from "../types/auth.types";
 
-export async function login(loginParams: LoginParams): Promise<SuccessfulLoginResponse> {
+export async function login(loginParams: LoginParams): Promise<LoginResponse> {
   const response = await api(`${getConfig("apiUrl")}/login`, {
     method: "POST",
     body: JSON.stringify(loginParams),
