@@ -21,3 +21,11 @@ export type ToggleActiveCredentialParams = {
   credentialUuid: string;
   active: boolean;
 };
+
+export type ValidServiceType = "airway" | "vehicle" | "road" | "hotel";
+
+export type FormInputs = {
+  provider: string | undefined;
+  credentialName: string | undefined;
+  serviceType: ValidServiceType;
+};

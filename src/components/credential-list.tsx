@@ -46,6 +46,8 @@ const CredentialsList = () => {
     );
   }
 
+  console.log(data);
+
   return (
     <>
       {data?.map((credential) => (

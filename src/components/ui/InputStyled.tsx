@@ -7,7 +7,7 @@ const InputStyled = styled("input", {
   padding: theme.padding.md,
   fontSize: theme.fontSizes.md,
   color: theme.colors.black,
-  width: "80%",
+  width: "90%",
   textAlign: "left",
 });
 

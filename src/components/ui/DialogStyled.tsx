@@ -2,7 +2,6 @@ import { Dialog } from "radix-ui";
 import { styled } from "@stitches/react";
 import { theme } from "../../../stitches.config";
 import { X } from "lucide-react";
-import ButtonStyled from "./ButtonStyled";
 
 const DialogContentStyled = styled(Dialog.Content, {
   position: "fixed",
@@ -13,6 +12,7 @@ const DialogContentStyled = styled(Dialog.Content, {
   borderRadius: theme.borderRadius.md,
   border: `1px solid ${theme.colors.secondary}`,
   width: "25vw",
+  minWidth: "450px",
 });
 
 const HeaderStyled = styled(Dialog.Title, {
@@ -45,26 +45,13 @@ const ContentStyled = styled("div", {
   textAlign: "center",
 });
 
-const FooterStyled = styled("div", {
-  backgroundColor: theme.colors.white,
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "space-between",
-  alignItems: "center",
-  borderBottomLeftRadius: theme.borderRadius.md,
-  borderBottomRightRadius: theme.borderRadius.md,
-  padding: theme.padding.md,
-});
-
 type DialogStyledProps = {
   title: string;
   trigger: React.ReactNode;
   content?: React.ReactNode;
-  onClick?: () => void;
-  onClickText?: string;
 };
 
-const DialogStyled = ({ title, trigger, content, onClick, onClickText }: DialogStyledProps) => {
+const DialogStyled = ({ title, trigger, content }: DialogStyledProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>{trigger}</Dialog.Trigger>
@@ -78,12 +65,6 @@ const DialogStyled = ({ title, trigger, content, onClick, onClickText }: DialogS
             </Dialog.DialogClose>
           </HeaderStyled>
           <ContentStyled>{content}</ContentStyled>
-          <FooterStyled>
-            <Dialog.DialogClose asChild>
-              <ButtonStyled variant="secondary">Cancel</ButtonStyled>
-            </Dialog.DialogClose>
-            <ButtonStyled onClick={onClick}>{onClickText}</ButtonStyled>
-          </FooterStyled>
         </DialogContentStyled>
       </Dialog.Portal>
     </Dialog.Root>

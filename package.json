@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "git-push-tested": "npm ci && npm run build && git push"
+    "git-add-tested": "npm ci && npm run build && git add ."
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.7",
@@ -23,6 +23,7 @@
     "radix-ui": "^1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hook-form": "^7.55.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {

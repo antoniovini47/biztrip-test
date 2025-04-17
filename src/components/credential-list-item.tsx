@@ -92,7 +92,7 @@ const CredentialListItem = ({ credential }: CredentialListItemProps) => {
 
   return (
     <CredentialContainerStyled>
-      <CredentialCollumContainer title="Name" children={credential.provider.name} />
+      <CredentialCollumContainer title="Supplier" children={credential.provider.name} />
       <CredentialCollumContainer title="Credential name" children={credential.description} />
       <CredentialCollumContainer
         title="Service type"
