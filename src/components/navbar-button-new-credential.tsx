@@ -1,10 +1,10 @@
 import ButtonStyled from "./ui/ButtonStyled";
-import DialogNewCredentials from "./dialog-new-credentials";
+import DialogCredentials from "./dialog-credentials";
 
 const NavBarButtonNewCredential = () => {
   return (
     <>
-      <DialogNewCredentials trigger={<ButtonStyled>New Credential</ButtonStyled>} />
+      <DialogCredentials trigger={<ButtonStyled>New Credential</ButtonStyled>} />
     </>
   );
 };

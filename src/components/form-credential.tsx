@@ -1,10 +1,12 @@
-import type { Credential, FormInputs, ValidServiceType } from "../types/credential.types";
+import { Credential, FormInputs } from "../types/credential.types";
 import { styled } from "@stitches/react";
 import { theme } from "../../stitches.config";
 import { useForm, SubmitHandler } from "react-hook-form";
 import InputStyled from "./ui/InputStyled";
 import ButtonStyled from "./ui/ButtonStyled";
-import { useState } from "react";
+import SelectStyled from "./ui/SelectStyled";
+import { useGetProviders } from "../queries/providers.queries";
+import FormCredentialFields from "./form-credential-fields";
 
 const FormStyled = styled("form", {
   display: "flex",
@@ -12,11 +14,8 @@ const FormStyled = styled("form", {
   gap: theme.gap.sm,
   justifyContent: "center",
   placeItems: "center",
-});
-
-const LabelStyled = styled("span", {
-  textAlign: "left",
-  width: "90%",
+  width: "100%",
+  padding: theme.gap.sm,
 });
 
 type FormCredentialProps = {
@@ -24,46 +23,49 @@ type FormCredentialProps = {
 };
 
 const FormCredential = ({ credential }: FormCredentialProps) => {
-  const [initialData] = useState<FormInputs>({
-    provider: credential?.provider.name,
-    credentialName: credential?.description,
-    serviceType: credential?.service_type as ValidServiceType,
-  });
+  const { data: providers, isLoading } = useGetProviders();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm<FormInputs>();
+
   const onSubmit: SubmitHandler<FormInputs> = (data) => {
     console.log(data);
   };
 
-  console.log(watch());
+  if (isLoading) {
+    return <div>Fetching providers...</div>;
+  }
 
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>
-      <LabelStyled>Fornecedor</LabelStyled>
-      <InputStyled
-        placeholder="Fornecedor"
-        defaultValue={initialData.provider}
-        {...register("provider", { required: true })}
-      />
+      <span>Fornecedor</span>
+      <SelectStyled
+        defaultValue={credential?.provider.name || ""}
+        {...register("provider", { required: true })}>
+        {providers?.map((provider) => (
+          <option key={provider.uuid} value={provider.uuid}>
+            {provider.name}
+          </option>
+        ))}
+      </SelectStyled>
       {errors.provider && <span>Escolha um fornecedor</span>}
-      <LabelStyled>Nome da credencial</LabelStyled>
+      <span>Nome da credencial</span>
       <InputStyled
-        defaultValue={initialData.credentialName}
+        defaultValue={credential?.description || ""}
         placeholder="Nome da credencial"
         {...register("credentialName", { required: true })}
       />
       {errors.credentialName && <span>This field is required</span>}
-      <LabelStyled>Tipo de serviço</LabelStyled>
-      <InputStyled
-        defaultValue={initialData.serviceType}
-        placeholder="Tipo de serviço"
-        {...register("serviceType", { required: true })}
-      />
-      <ButtonStyled type="submit">Add Credential</ButtonStyled>
+
+      {watch("provider") && (
+        <FormCredentialFields register={register} providerUuid={watch("provider") as string} />
+      )}
+
+      <ButtonStyled type="submit">{credential ? "Edit Credential" : "Add Credential"}</ButtonStyled>
     </FormStyled>
   );
 };
