@@ -1,9 +1,9 @@
-import SuppliersList from "./components/suppliers-list";
+import CredentialsList from "./components/credential-list";
 
 function App() {
   return (
     <>
-      <SuppliersList />
+      <CredentialsList />
     </>
   );
 }

@@ -3,7 +3,7 @@ import * as yup from "yup";
 
 export type LoginParams = yup.InferType<typeof LoginSchema>;
 
-export type SuccessfulLoginResponse = {
+export type LoginResponse = {
   token: {
     type: string;
     value: string;

@@ -2,7 +2,14 @@ export async function api(
   input: string | URL | globalThis.Request,
   init?: RequestInit
 ): Promise<Response> {
-  const defaultHeaders: Record<string, string> = {};
+  const localStorage =
+    typeof window !== "undefined"
+      ? window.localStorage
+      : { getItem: () => null, setItem: () => null };
+
+  const defaultHeaders: Record<string, string> = {
+    Authorization: `Bearer ${localStorage.getItem("access-token")}`,
+  };
 
   if (init?.body) {
     defaultHeaders["Content-Type"] = "application/json";
