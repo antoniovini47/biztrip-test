@@ -2,15 +2,7 @@ export type Credential = {
   credential_uuid: string;
   description: string;
   service_type: string;
-  provider: {
-    uuid: string;
-    name: string;
-    slug: string;
-    logo: string;
-    description: string;
-    service_type: string;
-    active: string;
-  };
+  provider: Provider;
   active: boolean;
   credential_values: string;
 };
@@ -28,4 +20,14 @@ export type FormInputs = {
   provider: string | undefined;
   credentialName: string | undefined;
   serviceType: ValidServiceType;
+};
+
+export type Provider = {
+  uuid: string;
+  name: string;
+  slug: string;
+  logo: string;
+  description: string;
+  service_type: string;
+  active: string;
 };

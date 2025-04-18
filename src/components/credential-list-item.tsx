@@ -6,6 +6,7 @@ import ServiceTypeIcon from "./ui/ServiceIconType";
 import { Credential } from "../types/credential.types";
 import { useToggleActiveCredentialMutation } from "../mutations/credential.mutations";
 import { useState } from "react";
+import DialogCredentials from "./dialog-credentials";
 
 const CredentialContainerStyled = styled("div", {
   display: "flex",
@@ -50,6 +51,7 @@ const EditIconStyled = styled(Edit, {
   color: theme.colors.black,
   width: "24px",
   height: "24px",
+  cursor: "pointer",
   "&:hover": {
     color: theme.colors.primary,
     transition: "color 300ms",
@@ -110,7 +112,7 @@ const CredentialListItem = ({ credential }: CredentialListItemProps) => {
               checked={isActive}
               disabled={isPending}
             />
-            <EditIconStyled />
+            <DialogCredentials trigger={<EditIconStyled />} credentials={credential} />
           </>
         }
       />

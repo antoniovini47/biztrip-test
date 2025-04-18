@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import InputStyled from "./ui/InputStyled";
 import ButtonStyled from "./ui/ButtonStyled";
 import { useState } from "react";
+import SelectStyled from "./ui/SelectStyled";
+import { useGetProviders } from "../queries/providers.queries";
 
 const FormStyled = styled("form", {
   display: "flex",
@@ -24,6 +26,8 @@ type FormCredentialProps = {
 };
 
 const FormCredential = ({ credential }: FormCredentialProps) => {
+  const { data: providers } = useGetProviders();
+
   const [initialData] = useState<FormInputs>({
     provider: credential?.provider.name,
     credentialName: credential?.description,
@@ -44,11 +48,15 @@ const FormCredential = ({ credential }: FormCredentialProps) => {
   return (
     <FormStyled onSubmit={handleSubmit(onSubmit)}>
       <LabelStyled>Fornecedor</LabelStyled>
-      <InputStyled
-        placeholder="Fornecedor"
+      <SelectStyled
         defaultValue={initialData.provider}
-        {...register("provider", { required: true })}
-      />
+        {...register("provider", { required: true })}>
+        {providers?.map((provider) => (
+          <option key={provider.uuid} value={provider.name}>
+            {provider.name}
+          </option>
+        ))}
+      </SelectStyled>
       {errors.provider && <span>Escolha um fornecedor</span>}
       <LabelStyled>Nome da credencial</LabelStyled>
       <InputStyled
@@ -63,7 +71,7 @@ const FormCredential = ({ credential }: FormCredentialProps) => {
         placeholder="Tipo de serviço"
         {...register("serviceType", { required: true })}
       />
-      <ButtonStyled type="submit">Add Credential</ButtonStyled>
+      <ButtonStyled type="submit">{credential ? "Edit Credential" : "Add Credential"}</ButtonStyled>
     </FormStyled>
   );
 };
