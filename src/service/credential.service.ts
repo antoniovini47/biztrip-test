@@ -1,6 +1,6 @@
 import { api } from "./api.service";
 import { getConfig } from "../lib/config";
-import { CredentialsResponse } from "../types/credential.types";
+import { CredentialParametersResponse, CredentialsResponse } from "../types/credential.types";
 
 export async function getAllCredentials(): Promise<CredentialsResponse> {
   const response = await api(`${getConfig("apiUrl")}/credentials`, {
@@ -33,4 +33,18 @@ export async function toggleActiveCredential(
   }
 
   return response;
+}
+
+export async function getCredentialParameters(
+  providerUuid: string
+): Promise<CredentialParametersResponse> {
+  const response = await api(`${getConfig("apiUrl")}/providers/${providerUuid}/parameters`, {
+    method: "GET",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to get credential parameters!");
+  }
+
+  return response.json();
 }

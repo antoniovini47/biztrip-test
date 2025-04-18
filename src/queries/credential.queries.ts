@@ -1,13 +1,30 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { CredentialsResponse } from "../types/credential.types";
-import { getAllCredentials } from "../service/credential.service";
+import * as credentialService from "../service/credential.service";
+import * as credentialTypes from "../types/credential.types";
 
 export const useGetAllCredentials = (
-  options?: Omit<UseQueryOptions<CredentialsResponse, Error>, "queryKey" | "queryFn">
+  options?: Omit<
+    UseQueryOptions<credentialTypes.CredentialsResponse, Error>,
+    "queryKey" | "queryFn"
+  >
 ) => {
-  return useQuery<CredentialsResponse, Error>({
+  return useQuery<credentialTypes.CredentialsResponse, Error>({
     queryKey: ["credentials"],
-    queryFn: () => getAllCredentials(),
+    queryFn: () => credentialService.getAllCredentials(),
+    ...options,
+  });
+};
+
+export const useGetCredentialParameters = (
+  providerUuid: string,
+  options?: Omit<
+    UseQueryOptions<credentialTypes.CredentialParametersResponse, Error>,
+    "queryKey" | "queryFn"
+  >
+) => {
+  return useQuery<credentialTypes.CredentialParametersResponse, Error>({
+    queryKey: ["credential-parameters", providerUuid],
+    queryFn: () => credentialService.getCredentialParameters(providerUuid),
     ...options,
   });
 };

@@ -20,6 +20,7 @@ export type FormInputs = {
   provider: string | undefined;
   credentialName: string | undefined;
   serviceType: ValidServiceType;
+  parameters: Record<string, string>;
 };
 
 export type Provider = {
@@ -30,4 +31,19 @@ export type Provider = {
   description: string;
   service_type: string;
   active: string;
+};
+
+export type CredentialParameters = {
+  uuid: string;
+  title: string;
+  description: string;
+  input_type: string;
+  required: boolean;
+};
+
+export type CredentialParametersResponse = {
+  data: {
+    service_types: ValidServiceType[];
+    parameters: CredentialParameters[];
+  };
 };
